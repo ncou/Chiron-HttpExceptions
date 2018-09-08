@@ -13,6 +13,8 @@
 HttpExceptions
 ==============
 
+**All HTTP statuses from [RFC 2616](http://tools.ietf.org/html/rfc2616) implemented as separated exceptions.**
+
 `HttpException` and its subclasses provide exceptions corresponding to HTTP
 error status codes. The most common are included, but you can create exceptions
 for other status codes by using (or subclassing) `HttpException` and providing 
@@ -21,6 +23,7 @@ the reason phrase as the `$message` and the status code as the `$code`.
 This package provides the following exception classes in the 
 `Chiron\Http\Exception\Client` namespace for 4xx http errors. 
 And `Chiron\Http\Exception\Server` namespace for 5xx http errors. 
+
 
 ***Client errors :***
 
@@ -134,4 +137,8 @@ Add `Chiron/http-exceptions` to your composer.json
 
 License
 ---------------------
-Licensed under the [MIT license](http://opensource.org/licenses/MIT)
+Licensed under the [MIT license](LICENSE.md)
+
+Suggestions
+---------------------
+Tips : [Usage Suggestion](USAGE_SUGGESTION.md)
