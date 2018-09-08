@@ -19,7 +19,8 @@ for other status codes by using (or subclassing) `HttpException` and providing
 the reason phrase as the `$message` and the status code as the `$code`.
 
 This package provides the following exception classes in the 
-`Chiron\Http\Exception` namespace.
+`Chiron\Http\Exception\Client` namespace for 4xx http errors. 
+And `Chiron\Http\Exception\Server` namespace for 5xx http errors. 
 
 ***Client errors :***
 
