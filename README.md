@@ -9,6 +9,6 @@
 [![PHP-Eye](https://php-eye.com/badge/chiron/http-exceptions/tested.svg?style=flat)](https://php-eye.com/package/chiron/http-exceptions)
 [![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat)](https://github.com/phpstan/phpstan)
 
-## PHP Renderer
+## Http Exception Classes
 
 Classes for Http Exceptions.
