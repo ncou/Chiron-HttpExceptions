@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Chiron\Http\Exception;
 
-
 //https://github.com/symfony/http-kernel/blob/master/Exception/HttpException.php
 //https://github.com/stratifyphp/http/blob/master/src/Exception/HttpException.php
 
