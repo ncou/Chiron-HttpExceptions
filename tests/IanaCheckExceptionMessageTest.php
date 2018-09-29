@@ -119,9 +119,10 @@ class IanaCheckExceptionMessageTest extends TestCase
     private function generateClasseName(string $nameNotFormatted): string
     {
         $parts = explode(' ', $nameNotFormatted);
-         $formatted = array_map(function ($part) {
+        $formatted = array_map(function ($part) {
             return ucwords(strtolower($part));
         }, $parts);
-         return implode($formatted);
+
+        return implode($formatted);
     }
 }
