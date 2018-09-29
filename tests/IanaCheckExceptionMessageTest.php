@@ -27,15 +27,17 @@ class IanaCheckExceptionMessageTest extends TestCase
         if ($code < 400) {
             $this->assertTrue(true);
         } else {
+            // generate the class name (should be the same as the error reason without space)
             if ($code >= 400 && $code <= 499) {
-                $className = 'Chiron\Http\Exception\Client\\' . $this->generateClasseName($reasonPhrase) . 'HttpException';
+                $className = 'Chiron\Http\Exception\Client\\' . str_replace(' ', '', $reasonPhrase) . 'HttpException';
             }
 
             if ($code >= 500 && $code <= 599) {
-                $className = 'Chiron\Http\Exception\Server\\' . $this->generateClasseName($reasonPhrase) . 'HttpException';
+                $className = 'Chiron\Http\Exception\Server\\' . str_replace(' ', '', $reasonPhrase) . 'HttpException';
             }
 
-            $this->assertTrue(is_subclass_of($className, HttpException::class), 'Http Exeption Class "' . $className . '" doesnt exist !!!');
+            // remember the classname is insensitive in PHP
+            $this->assertTrue(is_subclass_of($className, HttpException::class), 'Http Exeption Class "' . strtoupper($className) . '" doesnt exist !!!');
 
             $this->assertEquals(
                 $reasonPhrase,
@@ -43,17 +45,6 @@ class IanaCheckExceptionMessageTest extends TestCase
                 'Expected Exception message for the code (' . $code . ') to return ' . $reasonPhrase
             );
         }
-    }
-
-    private function generateClasseName(string $nameNotFormatted): string
-    {
-        $parts = explode(' ', $nameNotFormatted);
-
-        $formatted = array_map(function ($part) {
-            return ucwords(strtolower($part));
-        }, $parts);
-
-        return implode($formatted);
     }
 
     /**
