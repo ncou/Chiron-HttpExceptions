@@ -72,7 +72,7 @@ class IanaCheckExceptionMessageTest extends TestCase
             ],
         ]));
         $ianaHttpStatusCodes->load(self::URL_IANA);
-        if (! $ianaHttpStatusCodes->relaxNGValidate(__DIR__ . './schema/http-status-codes.rng')) {
+        if (! $ianaHttpStatusCodes->relaxNGValidate(__DIR__ . '/schema/http-status-codes.rng')) {
             self::fail('Invalid IANA\'s HTTP status code list.');
         }
         $ianaCodesReasonPhrases = [];
