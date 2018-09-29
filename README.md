@@ -51,7 +51,6 @@ And `Chiron\Http\Exception\Server` namespace for 5xx http errors.
 | [UnsupportedMediaTypeHttpException](src/Client/UnsupportedMediaTypeHttpException.php)                   |  415 | "Unsupported Media Type"                     |
 | [RangeNotSatisfiableHttpException](src/Client/RangeNotSatisfiableHttpException.php)                   |  416 | "Range Not Satisfiable"                     |
 | [ExpectationFailedHttpException](src/Client/ExpectationFailedHttpException.php)                   |  417 | "Expectation Failed"                     |
-| [ImATeapotHttpException](src/Client/ImATeapotHttpException.php)                   |  418 | "I'm a teapot"                     |
 | [MisdirectedRequestHttpException](src/Client/MisdirectedRequestHttpException.php)                   |  421 | "Misdirected Request"                     |
 | [UnprocessableEntityHttpException](src/Client/UnprocessableEntityHttpException.php)                   |  422 | "Unprocessable Entity"                     |
 | [LockedHttpException](src/Client/LockedHttpException.php)                   |  423 | "Locked"                     |
