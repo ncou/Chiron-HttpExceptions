@@ -33,7 +33,7 @@ class IanaCheckExceptionMessageTest extends TestCase
             }
 
             if ($code >= 500 && $code <= 599) {
-                $className = 'Chiron\\Http\\Exception\\Server\\' . str_replace(' ', '', $reasonPhrase) . 'HttpException';
+                $className = 'Chiron\\Http\\Exception\\Server\\' . $this->generateClasseName($reasonPhrase) . 'HttpException';
             }
 
             // remember the classname is insensitive in PHP
@@ -93,7 +93,7 @@ class IanaCheckExceptionMessageTest extends TestCase
      *
      * @return array
      */
-    private function getClassConstructorParameters(string $className)
+    private function getClassConstructorParameters(string $className): array
     {
         $ref = new ReflectionClass($className);
         if (! $ref->isInstantiable()) {
@@ -110,5 +110,19 @@ class IanaCheckExceptionMessageTest extends TestCase
         }
 
         return $parameters;
+    }
+
+    /**
+     * Format a string as a class name (no space + camel case).
+     *
+     * @return array
+     */
+    private function generateClasseName(string $nameNotFormatted): string
+    {
+        $parts = explode(' ', $nameNotFormatted);
+         $formatted = array_map(function ($part) {
+            return ucwords(strtolower($part));
+        }, $parts);
+         return implode($formatted);
     }
 }
