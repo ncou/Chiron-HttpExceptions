@@ -6,7 +6,7 @@ namespace Chiron\Http\Exception\Client;
 
 use Chiron\Http\Exception\HttpException;
 
-class RequestUriTooLongHttpException extends HttpException
+class UriTooLongHttpException extends HttpException
 {
     public function __construct(string $message = 'URI Too Long', \Throwable $previous = null, array $headers = [])
     {

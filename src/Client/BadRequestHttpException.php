@@ -6,9 +6,6 @@ namespace Chiron\Http\Exception\Client;
 
 use Chiron\Http\Exception\HttpException;
 
-/**
- * @author Ben Ramsey <ben@benramsey.com>
- */
 class BadRequestHttpException extends HttpException
 {
     public function __construct(string $message = 'Bad Request', \Throwable $previous = null, array $headers = [])

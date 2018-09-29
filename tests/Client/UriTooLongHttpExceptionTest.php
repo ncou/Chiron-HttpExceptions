@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Chiron\Tests\Http\Exception\Client;
 
-use Chiron\Http\Exception\Client\RequestUriTooLongHttpException;
+use Chiron\Http\Exception\Client\UriTooLongHttpException;
 use Chiron\Tests\Http\Exception\HttpExceptionTest;
 
-class RequestUriTooLongHttpExceptionTest extends HttpExceptionTest
+class UriTooLongHttpExceptionTest extends HttpExceptionTest
 {
     protected function createException()
     {
-        return new RequestUriTooLongHttpException();
+        return new UriTooLongHttpException();
     }
 }

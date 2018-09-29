@@ -6,7 +6,7 @@ namespace Chiron\Http\Exception\Client;
 
 use Chiron\Http\Exception\HttpException;
 
-class TooEarlyRequestHttpException extends HttpException
+class TooEarlyHttpException extends HttpException
 {
     public function __construct(string $message = 'Too Early', \Throwable $previous = null, array $headers = [])
     {

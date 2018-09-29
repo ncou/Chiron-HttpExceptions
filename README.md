@@ -13,7 +13,9 @@
 HttpExceptions
 ==============
 
-**All HTTP statuses from [RFC 2616](http://tools.ietf.org/html/rfc2616) implemented as separated exceptions.**
+**All HTTP statuses from [RFC 7231](http://tools.ietf.org/html/rfc7231) implemented as separated exceptions.**
+
+[Reference](https://www.iana.org/assignments/http-status-codes/http-status-codes.xml)
 
 `HttpException` and its subclasses provide exceptions corresponding to HTTP
 error status codes. The most common are included, but you can create exceptions
@@ -24,6 +26,8 @@ This package provides the following exception classes in the
 `Chiron\Http\Exception\Client` namespace for 4xx http errors. 
 And `Chiron\Http\Exception\Server` namespace for 5xx http errors. 
 
+4xx: Client Error - The request contains bad syntax or cannot be fulfilled
+5xx: Server Error - The server failed to fulfill an apparently valid request
 
 ***Client errors :***
 
@@ -43,16 +47,16 @@ And `Chiron\Http\Exception\Server` namespace for 5xx http errors.
 | [LengthRequiredHttpException](src/Client/LengthRequiredHttpException.php)                   |  411 | "Length Required"                     |
 | [PreconditionFailedHttpException](src/Client/PreconditionFailedHttpException.php)                   |  412 | "Precondition Failed"                     |
 | [PayloadTooLargeHttpException](src/Client/PayloadTooLargeHttpException.php)                   |  413 | "Payload Too Large"                     |
-| [RequestUriTooLongHttpException](src/Client/RequestUriTooLongHttpException.php)                   |  414 | "URI Too Long"                     |
+| [UriTooLongHttpException](src/Client/UriTooLongHttpException.php)                   |  414 | "URI Too Long"                     |
 | [UnsupportedMediaTypeHttpException](src/Client/UnsupportedMediaTypeHttpException.php)                   |  415 | "Unsupported Media Type"                     |
-| [RequestedRangeNotSatisfiableHttpException](src/Client/RequestedRangeNotSatisfiableHttpException.php)                   |  416 | "Range Not Satisfiable"                     |
+| [RangeNotSatisfiableHttpException](src/Client/RangeNotSatisfiableHttpException.php)                   |  416 | "Range Not Satisfiable"                     |
 | [ExpectationFailedHttpException](src/Client/ExpectationFailedHttpException.php)                   |  417 | "Expectation Failed"                     |
 | [ImATeapotHttpException](src/Client/ImATeapotHttpException.php)                   |  418 | "I'm a teapot"                     |
 | [MisdirectedRequestHttpException](src/Client/MisdirectedRequestHttpException.php)                   |  421 | "Misdirected Request"                     |
 | [UnprocessableEntityHttpException](src/Client/UnprocessableEntityHttpException.php)                   |  422 | "Unprocessable Entity"                     |
 | [LockedHttpException](src/Client/LockedHttpException.php)                   |  423 | "Locked"                     |
 | [FailedDependencyHttpException](src/Client/FailedDependencyHttpException.php)                   |  424 | "Failed Dependency"                     |
-| [TooEarlyRequestHttpException](src/Client/TooEarlyRequestHttpException.php)                   |  425 | "Too Early"                     |
+| [TooEarlyHttpException](src/Client/TooEarlyHttpException.php)                   |  425 | "Too Early"                     |
 | [UpgradeRequiredHttpException](src/Client/UpgradeRequiredHttpException.php)                   |  426 | "Upgrade Required"                     |
 | [PreconditionRequiredHttpException](src/Client/PreconditionRequiredHttpException.php)                   |  428 | "Precondition Required"                     |
 | [TooManyRequestsHttpException](src/Client/TooManyRequestsHttpException.php)                   |  429 | "Too Many Requests"                     |
