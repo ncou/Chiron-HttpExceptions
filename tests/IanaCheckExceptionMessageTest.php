@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Chiron\Tests\Http\Exception;
 
 use Chiron\Http\Exception\HttpException;
-use PHPUnit\Framework\TestCase;
 use DOMDocument;
 use DomXPath;
+use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
 class IanaCheckExceptionMessageTest extends TestCase
@@ -27,7 +27,6 @@ class IanaCheckExceptionMessageTest extends TestCase
         if ($code < 400) {
             $this->assertTrue(true);
         } else {
-
             if ($code >= 400 && $code <= 499) {
                 $className = 'Chiron\Http\Exception\Client\\' . $this->generateClasseName($reasonPhrase) . 'HttpException';
             }
@@ -36,31 +35,26 @@ class IanaCheckExceptionMessageTest extends TestCase
                 $className = 'Chiron\Http\Exception\Server\\' . $this->generateClasseName($reasonPhrase) . 'HttpException';
             }
 
-            $this->assertTrue(is_subclass_of($className, HttpException::class), 'Http Exeption Class "'. $className .'" doesnt exist !!!');
+            $this->assertTrue(is_subclass_of($className, HttpException::class), 'Http Exeption Class "' . $className . '" doesnt exist !!!');
 
             $this->assertEquals(
                 $reasonPhrase,
-                $this->getClassConstructorParameters($className)["message"],
+                $this->getClassConstructorParameters($className)['message'],
                 'Expected Exception message for the code (' . $code . ') to return ' . $reasonPhrase
             );
-
         }
-
     }
 
     private function generateClasseName(string $nameNotFormatted): string
     {
-        $parts = explode(" ", $nameNotFormatted);
+        $parts = explode(' ', $nameNotFormatted);
 
-        $formatted = array_map(function($part) {
+        $formatted = array_map(function ($part) {
             return ucwords(strtolower($part));
-        } , $parts);
+        }, $parts);
 
         return implode($formatted);
-
     }
-
-
 
     /**
      * Grab the reason phrase directly from the IANA specs.
@@ -103,9 +97,8 @@ class IanaCheckExceptionMessageTest extends TestCase
         return $ianaCodesReasonPhrases;
     }
 
-
     /**
-     * Return constructor parameters as array
+     * Return constructor parameters as array.
      *
      * @return array
      */
@@ -122,10 +115,9 @@ class IanaCheckExceptionMessageTest extends TestCase
 
         foreach ($params as $param) {
             $name = $param->getName();
-            $parameters[$name] = $param->isDefaultValueAvailable() ? $param->getDefaultValue() : "None";
+            $parameters[$name] = $param->isDefaultValueAvailable() ? $param->getDefaultValue() : 'None';
         }
 
         return $parameters;
     }
-
 }
