@@ -29,15 +29,14 @@ class IanaCheckExceptionMessageTest extends TestCase
         } else {
             // generate the class name (should be the same as the error reason without space)
             if ($code >= 400 && $code <= 499) {
-                $className = 'Chiron\\Http\\Exception\\Client\\' . str_replace(' ', '', $reasonPhrase) . 'HttpException';
+                $className = 'Chiron\\Http\\Exception\\Client\\' . $this->generateClasseName($reasonPhrase) . 'HttpException';
             }
 
             if ($code >= 500 && $code <= 599) {
-                $className = 'Chiron\\Http\\Exception\\Server\\' . str_replace(' ', '', $reasonPhrase) . 'HttpException';
+                $className = 'Chiron\\Http\\Exception\\Server\\' . $this->generateClasseName($reasonPhrase) . 'HttpException';
             }
 
-            // remember the classname is insensitive in PHP
-            $this->assertTrue(is_subclass_of($className, HttpException::class), 'Http Exeption Class "' . var_dump(strtoupper($className)) . '" doesnt exist !!!');
+            $this->assertTrue(is_subclass_of($className, HttpException::class), 'Http Exeption Class "' . $className . '" doesnt exist !!!');
 
             $this->assertEquals(
                 $reasonPhrase,
