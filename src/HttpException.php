@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Chiron\Http\Exception;
 
-use InvalidArgumentException;
 use Exception;
+use InvalidArgumentException;
 use Throwable;
 
 /**
  * An exception that represents a HTTP error response.
- *
  */
 class HttpException extends Exception
 {
