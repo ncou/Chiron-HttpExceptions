@@ -5,17 +5,14 @@ declare(strict_types=1);
 namespace Chiron\Http\Exception;
 
 use InvalidArgumentException;
-use RuntimeException;
+use Exception;
 use Throwable;
 
-//https://github.com/symfony/http-kernel/blob/master/Exception/HttpException.php
-//https://github.com/stratifyphp/http/blob/master/src/Exception/HttpException.php
-
-// TODO : regarder ici comment faire : https://github.com/juliangut/slim-exception/blob/master/src/
-
-// CREER des exceptions dédiées pour l'erreur 404 et 405 : https://github.com/stratifyphp/http/blob/master/src/Exception/HttpMethodNotAllowed.php   /   https://github.com/stratifyphp/http/blob/master/src/Exception/HttpNotFound.php
-
-class HttpException extends RuntimeException implements HttpExceptionInterface
+/**
+ * An exception that represents a HTTP error response.
+ *
+ */
+class HttpException extends Exception
 {
     protected $statusCode;
 
@@ -58,12 +55,8 @@ class HttpException extends RuntimeException implements HttpExceptionInterface
      *
      * @param array $headers Response headers
      */
-    public function setHeaders(array $headers): void // TODO : ajouter une méthode addHeader() ????
+    public function setHeaders(array $headers): void
     {
         $this->headers = $headers;
     }
-
-    // TODO : ajouter une méthode hasHeader() ????
-    // TODO ; ajouter une méthode getHeader() ????
-    // TODO : creer une fonction getHeaderLine() ???
 }
