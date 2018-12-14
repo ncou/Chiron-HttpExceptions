@@ -106,7 +106,7 @@ Catch an exception and output an HTML response.
 try {
     // ... 
 } catch (\Chiron\Http\Exception\HttpExceptionInterface $e) {
-    http_response_code($e->getCode());
+    http_response_code($e->getStatusCode());
     header("Content-type: text/html");
     print "<h1>" . $e->getMessage() . "</h1>";
 }
@@ -119,7 +119,7 @@ try {
     // ... 
 } catch (\Chiron\Http\Exception\HttpExceptionInterface $e) {
     $response = $response
-        ->withStatus($e->getCode())
+        ->withStatus($e->getStatusCode())
         ->withHeader("Content-type", "text/html")
         ->getBody()->write("<h1>" . $e->getMessage() . "</h1>");
 }
@@ -133,7 +133,7 @@ Add `Chiron/http-exceptions` to your composer.json
 ```json
 {
     "require": {
-        "chiron/http-exceptions": "^1.0"
+        "chiron/http-exceptions": "^1.3"
     }
 }
 ```
