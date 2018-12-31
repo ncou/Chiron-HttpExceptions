@@ -41,7 +41,7 @@ abstract class HttpException extends Exception
      *
      * @return $this
      */
-    public function setTitle(string $title): ApiExceptionInterface
+    public function setTitle(string $title): self
     {
         $this->title = $title;
         return $this;
@@ -58,7 +58,7 @@ abstract class HttpException extends Exception
      *
      * @return $this
      */
-    public function setDetail(string $detail): ApiExceptionInterface
+    public function setDetail(string $detail): self
     {
         $this->detail = $detail;
 
@@ -76,7 +76,7 @@ abstract class HttpException extends Exception
      *
      * @return $this
      */
-    public function setType(string $uri): ApiExceptionInterface
+    public function setType(string $uri): self
     {
         $this->type = $uri;
         return $this;
@@ -93,7 +93,7 @@ abstract class HttpException extends Exception
      *
      * @return $this
      */
-    public function setInstance(string $uri): ApiExceptionInterface
+    public function setInstance(string $uri): self
     {
         $this->instance = $uri;
 
@@ -105,7 +105,7 @@ abstract class HttpException extends Exception
      *
      * @return $this
      */
-    public function setAdditionalData(array $additionalData): ApiExceptionInterface
+    public function setAdditionalData(array $additionalData): self
     {
         $this->additionalData = $additionalData;
 
@@ -117,7 +117,7 @@ abstract class HttpException extends Exception
      * @param mixed  $value
      * @return ApiExceptionInterface
      */
-    final public function addAdditionalData(string $key, $value): ApiExceptionInterface
+    final public function addAdditionalData(string $key, $value): self
     {
         $this->additionalData[$key] = $value;
 
@@ -185,7 +185,7 @@ abstract class HttpException extends Exception
      *
      * @param array $headers Response headers
      */
-    public function setHeaders(array $headers): ApiExceptionInterface
+    public function setHeaders(array $headers): self
     {
         $this->headers = $headers;
 
