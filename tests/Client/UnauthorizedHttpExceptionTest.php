@@ -5,23 +5,14 @@ declare(strict_types=1);
 namespace Chiron\Tests\Http\Exception\Client;
 
 use Chiron\Http\Exception\Client\UnauthorizedHttpException;
-use Chiron\Tests\Http\Exception\HttpExceptionTest;
+use Chiron\Tests\Http\Exception\HttpExceptionTestCase;
 
-class UnauthorizedHttpExceptionTest extends HttpExceptionTest
+class UnauthorizedHttpExceptionTest extends HttpExceptionTestCase
 {
-    public function testHeadersDefault()
-    {
-        $exception = new UnauthorizedHttpException('Challenge');
-        $this->assertSame(['WWW-Authenticate' => 'Challenge'], $exception->getHeaders());
-    }
+    protected $defaultHeaders = ['WWW-Authenticate' => 'Challenge'];
 
-    /**
-     * @dataProvider headerDataProvider
-     */
-    public function testHeadersSetter($headers)
+    protected function createException()
     {
-        $exception = new UnauthorizedHttpException('Challenge');
-        $exception->setHeaders($headers);
-        $this->assertSame($headers, $exception->getHeaders());
+        return new UnauthorizedHttpException('Challenge');
     }
 }

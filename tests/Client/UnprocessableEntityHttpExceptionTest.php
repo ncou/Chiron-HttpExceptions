@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Chiron\Tests\Http\Exception\Client;
 
 use Chiron\Http\Exception\Client\UnprocessableEntityHttpException;
-use Chiron\Tests\Http\Exception\HttpExceptionTest;
+use Chiron\Tests\Http\Exception\HttpExceptionTestCase;
 
-class UnprocessableEntityHttpExceptionTest extends HttpExceptionTest
+class UnprocessableEntityHttpExceptionTest extends HttpExceptionTestCase
 {
     protected function createException()
     {

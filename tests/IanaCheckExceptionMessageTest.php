@@ -40,7 +40,7 @@ class IanaCheckExceptionMessageTest extends TestCase
 
             $this->assertEquals(
                 $reasonPhrase,
-                $this->getClassConstructorParameters($className)['message'],
+                $this->getClassConstructorParameters($className)['title'],
                 'Expected Exception message for the code (' . $code . ') to return ' . $reasonPhrase
             );
         }

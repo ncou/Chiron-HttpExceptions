@@ -5,24 +5,14 @@ declare(strict_types=1);
 namespace Chiron\Tests\Http\Exception\Client;
 
 use Chiron\Http\Exception\Client\TooManyRequestsHttpException;
-use Chiron\Tests\Http\Exception\HttpExceptionTest;
+use Chiron\Tests\Http\Exception\HttpExceptionTestCase;
 
-class TooManyRequestsHttpExceptionTest extends HttpExceptionTest
+class TooManyRequestsHttpExceptionTest extends HttpExceptionTestCase
 {
-    public function testHeadersDefaultRertyAfter()
+    public function testHeadersDefaultRetryAfter()
     {
         $exception = new TooManyRequestsHttpException(10);
         $this->assertSame(['Retry-After' => 10], $exception->getHeaders());
-    }
-
-    /**
-     * @dataProvider headerDataProvider
-     */
-    public function testHeadersSetter($headers)
-    {
-        $exception = new TooManyRequestsHttpException(10);
-        $exception->setHeaders($headers);
-        $this->assertSame($headers, $exception->getHeaders());
     }
 
     protected function createException()

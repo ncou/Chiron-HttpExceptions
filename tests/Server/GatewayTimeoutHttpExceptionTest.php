@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Chiron\Tests\Http\Exception\Server;
 
 use Chiron\Http\Exception\Server\GatewayTimeoutHttpException;
-use Chiron\Tests\Http\Exception\HttpExceptionTest;
+use Chiron\Tests\Http\Exception\HttpExceptionTestCase;
 
-class GatewayTimeoutHttpExceptionTest extends HttpExceptionTest
+class GatewayTimeoutHttpExceptionTest extends HttpExceptionTestCase
 {
     protected function createException()
     {

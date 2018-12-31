@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Chiron\Tests\Http\Exception\Server;
 
 use Chiron\Http\Exception\Server\NotExtendedHttpException;
-use Chiron\Tests\Http\Exception\HttpExceptionTest;
+use Chiron\Tests\Http\Exception\HttpExceptionTestCase;
 
-class NotExtendedHttpExceptionTest extends HttpExceptionTest
+class NotExtendedHttpExceptionTest extends HttpExceptionTestCase
 {
     protected function createException()
     {

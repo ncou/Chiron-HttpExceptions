@@ -8,8 +8,26 @@ use Chiron\Http\Exception\HttpException;
 
 class InternalServerErrorHttpException extends HttpException
 {
-    public function __construct(string $message = 'Internal Server Error', \Throwable $previous = null, array $headers = [])
+    private const STATUS_CODE = 500;
+    private const TITLE = 'Internal Server Error';
+    private const DETAIL = 'An error has occurred and this resource cannot be displayed.';
+    private const TYPE_URI = 'https://httpstatuses.com/500';
+
+    /**
+     * @param string $detail
+     * @param string $title
+     * @param string $type
+     * @param string $instance
+     */
+    public function __construct(string $detail = self::DETAIL, string $title = self::TITLE, string $type = self::TYPE_URI, string $instance = '')
     {
-        parent::__construct(500, $message, $previous, $headers);
+        // override the protected var presents in the extended abstract classe.
+        $this->statusCode = self::STATUS_CODE;
+        $this->detail   = $detail;
+        $this->title    = $title;
+        $this->type     = $type;
+        $this->instance = $instance;
+
+        parent::__construct($this->detail);
     }
 }

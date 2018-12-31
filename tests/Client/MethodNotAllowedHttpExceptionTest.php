@@ -5,29 +5,18 @@ declare(strict_types=1);
 namespace Chiron\Tests\Http\Exception\Client;
 
 use Chiron\Http\Exception\Client\MethodNotAllowedHttpException;
-use Chiron\Tests\Http\Exception\HttpExceptionTest;
+use Chiron\Tests\Http\Exception\HttpExceptionTestCase;
 
-class MethodNotAllowedHttpExceptionTest extends HttpExceptionTest
+class MethodNotAllowedHttpExceptionTest extends HttpExceptionTestCase
 {
-    /*
-    protected function createException()
-    {
-        return new MethodNotAllowedHttpException();
-    }*/
-
-    public function testHeadersDefault()
+    public function testHeadersDefaultAllow()
     {
         $exception = new MethodNotAllowedHttpException(['GET', 'PUT']);
         $this->assertSame(['Allow' => 'GET, PUT'], $exception->getHeaders());
     }
 
-    /**
-     * @dataProvider headerDataProvider
-     */
-    public function testHeadersSetter($headers)
+    protected function createException()
     {
-        $exception = new MethodNotAllowedHttpException(['GET']);
-        $exception->setHeaders($headers);
-        $this->assertSame($headers, $exception->getHeaders());
+        return new MethodNotAllowedHttpException();
     }
 }

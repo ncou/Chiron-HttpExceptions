@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Chiron\Tests\Http\Exception\Client;
 
 use Chiron\Http\Exception\Client\ExpectationFailedHttpException;
-use Chiron\Tests\Http\Exception\HttpExceptionTest;
+use Chiron\Tests\Http\Exception\HttpExceptionTestCase;
 
-class ExpectationFailedHttpExceptionTest extends HttpExceptionTest
+class ExpectationFailedHttpExceptionTest extends HttpExceptionTestCase
 {
     protected function createException()
     {

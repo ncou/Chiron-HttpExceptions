@@ -5,23 +5,14 @@ declare(strict_types=1);
 namespace Chiron\Tests\Http\Exception\Client;
 
 use Chiron\Http\Exception\Client\UpgradeRequiredHttpException;
-use Chiron\Tests\Http\Exception\HttpExceptionTest;
+use Chiron\Tests\Http\Exception\HttpExceptionTestCase;
 
-class UpgradeRequiredHttpExceptionTest extends HttpExceptionTest
+class UpgradeRequiredHttpExceptionTest extends HttpExceptionTestCase
 {
-    public function testHeadersDefault()
-    {
-        $exception = new UpgradeRequiredHttpException('Upgrade-Value');
-        $this->assertSame(['Upgrade' => 'Upgrade-Value'], $exception->getHeaders());
-    }
+    protected $defaultHeaders = ['Upgrade' => 'Upgrade-Value'];
 
-    /**
-     * @dataProvider headerDataProvider
-     */
-    public function testHeadersSetter($headers)
+    protected function createException()
     {
-        $exception = new UpgradeRequiredHttpException('Upgrade-Value');
-        $exception->setHeaders($headers);
-        $this->assertSame($headers, $exception->getHeaders());
+        return new UpgradeRequiredHttpException('Upgrade-Value');
     }
 }
