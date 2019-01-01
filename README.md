@@ -78,7 +78,7 @@ And `Chiron\Http\Exception\Server` namespace for 5xx http errors.
 | [NotExtendedHttpException](src/Server/NotExtendedHttpException.php)                   |  510 | "Not Extended"                     |
 | [NetworkAuthenticationRequiredHttpException](src/Server/NetworkAuthenticationRequiredHttpException.php)                   |  511 | "Network Authentication Required"                     |
 
-*[References for Http status code](https://www.iana.org/assignments/http-status-codes/http-status-codes.xml)*
+*[References for HTTP status code](https://www.iana.org/assignments/http-status-codes/http-status-codes.xml)*
 
 Basic Usage
 -----------
@@ -123,7 +123,7 @@ try {
 
 Api Problem
 -------
-The following properties are available.
+The following properties are available to use it for API Problem [RFC 7807](https://tools.ietf.org/html/rfc7807#page-5).
 
 ```php
 $e = new \Chiron\Http\Exception\Client\ForbiddenHttpException();
