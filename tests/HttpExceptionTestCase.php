@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Chiron\Tests\Http\Exception;
 
-use Chiron\Http\Exception\HttpException;
 use PHPUnit\Framework\TestCase;
 
 abstract class HttpExceptionTestCase extends TestCase

@@ -14,7 +14,7 @@ class MethodNotAllowedHttpException extends HttpException
     private const TYPE_URI = 'https://httpstatuses.com/405';
 
     /**
-     * @param array $allow
+     * @param array  $allow
      * @param string $detail
      * @param string $title
      * @param string $type
@@ -28,9 +28,9 @@ class MethodNotAllowedHttpException extends HttpException
 
         // override the protected var presents in the extended abstract classe.
         $this->statusCode = self::STATUS_CODE;
-        $this->detail   = $detail;
-        $this->title    = $title;
-        $this->type     = $type;
+        $this->detail = $detail;
+        $this->title = $title;
+        $this->type = $type;
         $this->instance = $instance;
 
         parent::__construct($this->detail);

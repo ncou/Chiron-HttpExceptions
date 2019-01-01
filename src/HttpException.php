@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Chiron\Http\Exception;
 
 use Exception;
-use InvalidArgumentException;
-use Throwable;
 use JsonSerializable;
 
 /**
@@ -17,16 +15,22 @@ abstract class HttpException extends Exception implements JsonSerializable
 {
     /** @var array */
     protected $headers = [];
+
     /** @var int */
     protected $statusCode;
+
     /** @var string */
     protected $title;
+
     /** @var string */
     protected $detail;
+
     /** @var string */
     protected $type;
+
     /** @var string */
     protected $instance;
+
     /** @var array */
     protected $additionalData = [];
 
@@ -69,6 +73,7 @@ abstract class HttpException extends Exception implements JsonSerializable
     {
         return $this->title;
     }
+
     /**
      * @param string $title
      *
@@ -77,8 +82,10 @@ abstract class HttpException extends Exception implements JsonSerializable
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
+
     /**
      * @return string
      */
@@ -86,6 +93,7 @@ abstract class HttpException extends Exception implements JsonSerializable
     {
         return $this->detail;
     }
+
     /**
      * @param string $detail
      *
@@ -97,6 +105,7 @@ abstract class HttpException extends Exception implements JsonSerializable
 
         return $this;
     }
+
     /**
      * @return string
      */
@@ -104,6 +113,7 @@ abstract class HttpException extends Exception implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @param string $uri
      *
@@ -112,8 +122,10 @@ abstract class HttpException extends Exception implements JsonSerializable
     public function setType(string $uri): self
     {
         $this->type = $uri;
+
         return $this;
     }
+
     /**
      * @return string
      */
@@ -121,6 +133,7 @@ abstract class HttpException extends Exception implements JsonSerializable
     {
         return $this->instance;
     }
+
     /**
      * @param string $uri
      *
@@ -148,6 +161,7 @@ abstract class HttpException extends Exception implements JsonSerializable
     /**
      * @param string $key
      * @param mixed  $value
+     *
      * @return $this
      */
     public function addAdditionalData(string $key, $value): self
@@ -165,10 +179,10 @@ abstract class HttpException extends Exception implements JsonSerializable
     public function toArray(): array
     {
         $problem = [
-            'status' => $this->getStatusCode(),
-            'title' => $this->getTitle(),
-            'detail' => $this->getDetail(),
-            'type' => $this->getType(),
+            'status'   => $this->getStatusCode(),
+            'title'    => $this->getTitle(),
+            'detail'   => $this->getDetail(),
+            'type'     => $this->getType(),
             'instance' => $this->getInstance(),
         ];
 
