@@ -120,9 +120,9 @@ class IanaCheckExceptionTitleTest extends TestCase
     private function getClassConstants(string $className): array
     {
         $ref = new ReflectionClass($className);
+
         return $ref->getConstants();
     }
-
 
     /**
      * Format a string as a class name (no space + camel case).

@@ -25,9 +25,9 @@ class BadGatewayHttpException extends HttpException
     {
         // override the protected var presents in the extended abstract classe.
         $this->statusCode = self::STATUS_CODE;
-        $this->detail   = $detail;
-        $this->title    = $title;
-        $this->type     = $type;
+        $this->detail = $detail;
+        $this->title = $title;
+        $this->type = $type;
         $this->instance = $instance;
 
         parent::__construct($this->detail);
