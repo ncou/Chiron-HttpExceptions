@@ -13,9 +13,9 @@
 HttpExceptions
 ==============
 
-**All HTTP statuses from [RFC 7231](http://tools.ietf.org/html/rfc7231) implemented as separated exceptions.**
+**All HTTP statuses from [RFC 7231](http://tools.ietf.org/html/rfc7231) implemented as separated Exceptions.**
 
-**This library provides also a straightforward implementation of the IETF Problem Details for HTTP APIs [RFC 7807](https://tools.ietf.org/html/rfc7807).**
+**These Exceptions support a straightforward implementation of the IETF Problem Details for HTTP APIs [RFC 7807](https://tools.ietf.org/html/rfc7807).**
 
 abstract `HttpException` class and its subclasses provide exceptions corresponding to HTTP
 error status codes. The most common are included, but you can create exceptions
@@ -78,7 +78,7 @@ And `Chiron\Http\Exception\Server` namespace for 5xx http errors.
 | [NotExtendedHttpException](src/Server/NotExtendedHttpException.php)                   |  510 | "Not Extended"                     |
 | [NetworkAuthenticationRequiredHttpException](src/Server/NetworkAuthenticationRequiredHttpException.php)                   |  511 | "Network Authentication Required"                     |
 
-[References for Http status code](https://www.iana.org/assignments/http-status-codes/http-status-codes.xml)
+*[References for Http status code](https://www.iana.org/assignments/http-status-codes/http-status-codes.xml)*
 
 Basic Usage
 -----------
@@ -89,7 +89,7 @@ Throw an exception.
 throw new \Chiron\Http\Exception\Client\BadRequestHttpException(); 
 ```
 
-Throw an exception with previous exception and also http headers.
+Throw an exception with a custom message.
 
 ```php
 $e = new \Chiron\Http\Exception\Client\BadRequestHttpException("Invalid syntax !");
