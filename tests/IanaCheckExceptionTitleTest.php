@@ -10,7 +10,7 @@ use DomXPath;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
-class IanaCheckExceptionMessageTest extends TestCase
+class IanaCheckExceptionTitleTest extends TestCase
 {
     private const URL_IANA = 'https://www.iana.org/assignments/http-status-codes/http-status-codes.xml';
 
@@ -41,7 +41,13 @@ class IanaCheckExceptionMessageTest extends TestCase
             $this->assertEquals(
                 $reasonPhrase,
                 $this->getClassConstructorParameters($className)['title'],
-                'Expected Exception message for the code (' . $code . ') to return ' . $reasonPhrase
+                'Expected "Exception message" for the code (' . $code . ') to return ' . $reasonPhrase
+            );
+
+            $this->assertEquals(
+                $code,
+                $this->getClassConstants($className)['STATUS_CODE'],
+                'Expected "Http status code" for the class (' . $className . ') to return ' . $code
             );
         }
     }
@@ -110,6 +116,13 @@ class IanaCheckExceptionMessageTest extends TestCase
 
         return $parameters;
     }
+
+    private function getClassConstants(string $className): array
+    {
+        $ref = new ReflectionClass($className);
+        return $ref->getConstants();
+    }
+
 
     /**
      * Format a string as a class name (no space + camel case).

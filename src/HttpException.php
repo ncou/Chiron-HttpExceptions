@@ -7,12 +7,13 @@ namespace Chiron\Http\Exception;
 use Exception;
 use InvalidArgumentException;
 use Throwable;
+use JsonSerializable;
 
 /**
  * An exception that represents a HTTP error response with the fields for the RFC Api Problem.
  */
 // TODO : passer toutes les méthodes en "final" =>https://github.com/mnavarrocarter/problem-details/blob/master/src/ApiException.php
-abstract class HttpException extends Exception
+abstract class HttpException extends Exception implements JsonSerializable
 {
     /** @var array */
     protected $headers = [];
@@ -28,6 +29,38 @@ abstract class HttpException extends Exception
     protected $instance;
     /** @var array */
     protected $additionalData = [];
+
+    /**
+     * Returns the status code.
+     *
+     * @return int An HTTP response status code
+     */
+    public function getStatusCode(): int
+    {
+        return $this->statusCode;
+    }
+
+    /**
+     * Returns response headers.
+     *
+     * @return array Response headers
+     */
+    public function getHeaders(): array
+    {
+        return $this->headers;
+    }
+
+    /**
+     * Set response headers.
+     *
+     * @param array $headers Response headers
+     */
+    public function setHeaders(array $headers): self
+    {
+        $this->headers = $headers;
+
+        return $this;
+    }
 
     /**
      * @return string
@@ -115,15 +148,14 @@ abstract class HttpException extends Exception
     /**
      * @param string $key
      * @param mixed  $value
-     * @return ApiExceptionInterface
+     * @return $this
      */
-    final public function addAdditionalData(string $key, $value): self
+    public function addAdditionalData(string $key, $value): self
     {
         $this->additionalData[$key] = $value;
 
         return $this;
     }
-
 
     /**
      * Return the Exception as an array, suitable for serializing.
@@ -141,10 +173,9 @@ abstract class HttpException extends Exception
         ];
 
         // Required fields should always overwrite additional fields
-        $problem = array_merge($this->additionalData, $problem);
-
-        // remove empty fields in the array
-        return array_filter($problem);
+        // + remove empty fields in the default fields
+        // (don't filter additionalData array in case there is a false value)
+        return array_merge($this->additionalData, array_filter($problem));
     }
 
     /**
@@ -153,42 +184,5 @@ abstract class HttpException extends Exception
     public function jsonSerialize(): array
     {
         return $this->toArray();
-    }
-
-
-
-
-    //*****************************************************************************************************
-
-    /**
-     * Returns the status code.
-     *
-     * @return int An HTTP response status code
-     */
-    public function getStatusCode(): int
-    {
-        return $this->statusCode;
-    }
-
-    /**
-     * Returns response headers.
-     *
-     * @return array Response headers
-     */
-    public function getHeaders(): array
-    {
-        return $this->headers;
-    }
-
-    /**
-     * Set response headers.
-     *
-     * @param array $headers Response headers
-     */
-    public function setHeaders(array $headers): self
-    {
-        $this->headers = $headers;
-
-        return $this;
     }
 }
