@@ -148,6 +148,8 @@ try {
     print json_encode($e);
 }
 ```
+For XML output you can use the function ```php $e->toArray() ``` and serialize the data.
+
 
 Install
 -------
