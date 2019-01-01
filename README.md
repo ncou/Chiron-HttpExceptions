@@ -14,13 +14,14 @@ HttpExceptions
 ==============
 
 **All HTTP statuses from [RFC 7231](http://tools.ietf.org/html/rfc7231) implemented as separated exceptions.**
+**This library provides a simple and straightforward implementation of the IETF Problem Details for HTTP APIs [RFC 7807](https://tools.ietf.org/html/rfc7807).**
 
 [Reference](https://www.iana.org/assignments/http-status-codes/http-status-codes.xml)
 
-`HttpException` and its subclasses provide exceptions corresponding to HTTP
+abstract `HttpException` class and its subclasses provide exceptions corresponding to HTTP
 error status codes. The most common are included, but you can create exceptions
 for other status codes by using (or subclassing) `HttpException` and providing 
-the reason phrase as the `$message` and the status code as the `$code`.
+the reason phrase as the `$title` and the status code as the `$statusCode`.
 
 This package provides the following exception classes in the 
 `Chiron\Http\Exception\Client` namespace for 4xx http errors. 
@@ -84,20 +85,14 @@ Basic Usage
 Throw an exception.
 
 ```php
-throw new \Chiron\Http\Exception\Client\UnauthorizedHttpException(); 
+throw new \Chiron\Http\Exception\Client\BadRequestHttpException(); 
 ```
 
-Throw a custom exception, providing a status code.
-
-```php
-throw new \Chiron\Http\Exception\HttpException(
-    505, "HTTP Version Not Supported"); 
-```
 Throw an exception with previous exception and also http headers.
 
 ```php
-throw new \Chiron\Http\Exception\HttpException(
-    505, "HTTP Version Not Supported", $e, ['X-Custom-Header' => 'foobar']); 
+$e = new \Chiron\Http\Exception\Client\BadRequestHttpException("Invalid syntax !");
+throw $e->setHeaders(['X-Custom-Header' => 'foobar']);
 ```
 
 Catch an exception and output an HTML response.
@@ -105,7 +100,7 @@ Catch an exception and output an HTML response.
 ```php
 try {
     // ... 
-} catch (\Chiron\Http\Exception\HttpExceptionInterface $e) {
+} catch (\Chiron\Http\Exception\HttpException $e) {
     http_response_code($e->getStatusCode());
     header("Content-type: text/html");
     print "<h1>" . $e->getMessage() . "</h1>";
@@ -125,6 +120,32 @@ try {
 }
 ```
 
+You can also use it as an API Problem response.
+
+```php
+try {
+    // ... 
+} catch (\Chiron\Http\Exception\HttpException $e) {
+    http_response_code($e->getStatusCode());
+    header("Content-type: application/problem+json");
+    print json_encode($e);
+}
+```
+
+Api Problem
+-------
+The following properties are available.
+
+```php
+$e = new \Chiron\Http\Exception\Client\ForbiddenHttpException();
+
+$e->setTitle('You do not have enough credit.');
+$e->setDetail('Your current balance is 30, but that costs 50.');
+$e->setType('https://example.com/probs/out-of-credit');
+$e->setIntance('https://example.net/account/12345/msgs/abc');
+$e->setAdditionalData(['balance' => 30, 'accounts' => ['https://example.net/account/12345', 'https://example.net/account/67890']]);
+```
+
 Install
 -------
 
@@ -133,7 +154,7 @@ Add `Chiron/http-exceptions` to your composer.json
 ```json
 {
     "require": {
-        "chiron/http-exceptions": "^1.3"
+        "chiron/http-exceptions": "^2.0"
     }
 }
 ```
