@@ -78,7 +78,7 @@ And `Chiron\Http\Exception\Server` namespace for 5xx http errors.
 | [NotExtendedHttpException](src/Server/NotExtendedHttpException.php)                   |  510 | "Not Extended"                     |
 | [NetworkAuthenticationRequiredHttpException](src/Server/NetworkAuthenticationRequiredHttpException.php)                   |  511 | "Network Authentication Required"                     |
 
-[Reference 4xx - 5xx](https://www.iana.org/assignments/http-status-codes/http-status-codes.xml)
+[References for Http status code](https://www.iana.org/assignments/http-status-codes/http-status-codes.xml)
 
 Basic Usage
 -----------
@@ -121,18 +121,6 @@ try {
 }
 ```
 
-You can also use it as an API Problem response.
-
-```php
-try {
-    // ... 
-} catch (\Chiron\Http\Exception\HttpException $e) {
-    http_response_code($e->getStatusCode());
-    header("Content-type: application/problem+json");
-    print json_encode($e);
-}
-```
-
 Api Problem
 -------
 The following properties are available.
@@ -145,6 +133,20 @@ $e->setDetail('Your current balance is 30, but that costs 50.');
 $e->setType('https://example.com/probs/out-of-credit');
 $e->setIntance('https://example.net/account/12345/msgs/abc');
 $e->setAdditionalData(['balance' => 30, 'accounts' => ['https://example.net/account/12345', 'https://example.net/account/67890']]);
+
+throw $e;
+```
+
+And output the API Problem response like this :
+
+```php
+try {
+    // ... 
+} catch (\Chiron\Http\Exception\HttpException $e) {
+    http_response_code($e->getStatusCode());
+    header("Content-type: application/problem+json");
+    print json_encode($e);
+}
 ```
 
 Install
