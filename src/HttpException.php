@@ -10,7 +10,6 @@ use JsonSerializable;
 /**
  * An exception that represents a HTTP error response with the fields for the RFC Api Problem.
  */
-// TODO : passer toutes les méthodes en "final" =>https://github.com/mnavarrocarter/problem-details/blob/master/src/ApiException.php
 abstract class HttpException extends Exception implements JsonSerializable
 {
     /** @var array */
