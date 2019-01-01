@@ -2,7 +2,7 @@
   "name": "chiron/http-exceptions",
   "type" : "library",
   "description": "Exception classes for Http Exception.",
-  "keywords": ["http","exceptions","httpexception","chiron","framework"],
+  "keywords": ["http","exceptions","httpexception","api","problem", "rfc7231", "rfc7807"],
   "homepage": "https://github.com/ncou/Chiron-HttpExceptions",
   "license": "MIT",
   "require": {
