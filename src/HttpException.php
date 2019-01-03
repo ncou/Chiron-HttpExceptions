@@ -171,6 +171,14 @@ abstract class HttpException extends Exception implements JsonSerializable
     }
 
     /**
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
+    }
+
+    /**
      * Return the Exception as an array, suitable for serializing.
      *
      * @return array
@@ -186,16 +194,24 @@ abstract class HttpException extends Exception implements JsonSerializable
         ];
 
         // Required fields should always overwrite additional fields
-        // + remove empty fields in the default fields
-        // (don't filter additionalData array in case there is a false value)
-        return array_merge($this->additionalData, array_filter($problem));
+        // Use array_filter to remove empty fields in the default fields
+        // And don't array_filter $additionalData in case there is a bool = false value
+        return $this->mergeArrays(array_filter($problem), $this->additionalData);
     }
 
     /**
+     * Merge the primary + secondary array.
+     *
+     * Values in the primary array will not be overwrited by the secondary values.
+     * Use some reverse function to be sure the secondary array is positioned at the end of the array.
+     *
+     * @param array $primary
+     * @param array $secondary
+     *
      * @return array
      */
-    public function jsonSerialize(): array
+    private function mergeArrays(array $primary, array $secondary): array
     {
-        return $this->toArray();
+        return array_reverse(array_merge(array_reverse($secondary), array_reverse($primary)));
     }
 }
