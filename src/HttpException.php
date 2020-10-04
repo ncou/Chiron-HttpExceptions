@@ -66,6 +66,19 @@ abstract class HttpException extends Exception implements JsonSerializable
     }
 
     /**
+     * Add response header.
+     *
+     * @param array $header Response header name
+     * @param array $value Response header value
+     */
+    public function addHeader(string $header, string $value): self
+    {
+        $this->headers[$header] = $value;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getTitle(): string
