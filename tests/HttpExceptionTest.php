@@ -18,6 +18,7 @@ class HttpExceptionTest extends AbstractTestCase
         $exception = new HttpException(200, '', null, $headers);
 
         $this->assertSame($headers, $exception->getHeaders());
+        $this->assertSame(200, $exception->getStatusCode());
     }
 
     protected function createException(string $message = '', ?\Throwable $previous = null, int $code = 0, array $headers = []): HttpException
