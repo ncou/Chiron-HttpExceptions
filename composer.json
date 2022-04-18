@@ -1,30 +1,55 @@
 {
   "name": "chiron/http-exceptions",
-  "type" : "library",
   "description": "Exception classes for Http Exception.",
-  "keywords": ["http","exceptions","httpexception","api","problem", "rfc7231", "rfc7807"],
-  "homepage": "https://github.com/ncou/Chiron-HttpExceptions",
   "license": "MIT",
+  "type": "library",
+  "keywords": [
+    "http",
+    "exceptions",
+    "httpexception",
+    "api",
+    "problem",
+    "rfc7231",
+    "rfc7807"
+  ],
+  "homepage": "https://github.com/ncou/Chiron-HttpExceptions",
   "require": {
-        "php": "^8.0|^8.1"
-  },
-  "autoload": {
-        "psr-4": {
-          "Chiron\\Http\\Exception\\": "src"
-        }
-  },
-  "autoload-dev" : {
-        "psr-4": { "Chiron\\Tests\\Http\\Exception\\" : "tests/" }
+    "php": "^8.0 || ^8.1"
   },
   "require-dev": {
-        "phpunit/phpunit": "^9.5",
-        "phpstan/phpstan": "^0.12",
-        "phpstan/phpstan-phpunit": "^0.12",
-        "chiron/coding-standard": "^3.0"
+    "chiron/devtools": "^1.0"
   },
-  "scripts": {
-        "phpunit": "phpunit --colors=always",
-        "test-coverage": "phpunit --coverage-clover clover.xml",
-        "phpstan": "phpstan analyse src --level=7"
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "Chiron\\Http\\Exception\\": "src"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Chiron\\Tests\\Http\\Exception\\": "tests/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "composer/package-versions-deprecated": true,
+      "phpstan/extension-installer": true,
+      "ergebnis/composer-normalize": true,
+      "captainhook/plugin-composer": true,
+      "chiron/devtools": true
+    }
+  },
+  "extra": {
+    "captainhook": {
+      "force-install": true
+    },
+    "chiron/devtools": {
+      "command-prefix": "dev"
+    },
+    "ramsey/conventional-commits": {
+      "configFile": "conventional-commits.json"
+    }
+  }
 }

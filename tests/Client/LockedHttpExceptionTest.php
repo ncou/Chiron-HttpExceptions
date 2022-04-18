@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Chiron\Tests\Http\Exception\Client;
 
 use Chiron\Http\Exception\Client\LockedHttpException;
-use Chiron\Tests\Http\Exception\HttpExceptionTestCase;
+use Chiron\Http\Exception\HttpException;
+use Chiron\Tests\Http\Exception\AbstractTestCase;
 
-class LockedHttpExceptionTest extends HttpExceptionTestCase
+class LockedHttpExceptionTest extends AbstractTestCase
 {
-    protected function createException()
+    protected function createException(string $message = '', ?\Throwable $previous = null, int $code = 0, array $headers = []): HttpException
     {
-        return new LockedHttpException();
+        return new LockedHttpException($message, $previous, $code, $headers);
     }
 }

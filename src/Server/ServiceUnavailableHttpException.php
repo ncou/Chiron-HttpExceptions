@@ -8,31 +8,15 @@ use Chiron\Http\Exception\HttpException;
 
 class ServiceUnavailableHttpException extends HttpException
 {
-    private const STATUS_CODE = 503;
-    private const TITLE = 'Service Unavailable';
-    private const DETAIL = 'The server is currently unavailable. It may be overloaded or down for maintenance.';
-    private const TYPE_URI = 'https://httpstatuses.com/503';
-
     /**
-     * @param mixed  $retryAfter could be an int for a number of seconds, or could be a string for an http date.
-     * @param string $detail
-     * @param string $title
-     * @param string $type
-     * @param string $instance
+     * @param int|string|null $retryAfter The number of seconds or HTTP-date after which the request may be retried.
      */
-    public function __construct($retryAfter = null, string $detail = self::DETAIL, string $title = self::TITLE, string $type = self::TYPE_URI, string $instance = '')
+    public function __construct(int|string|null $retryAfter = null, string $message = '', ?\Throwable $previous = null, int $code = 0, array $headers = [])
     {
         if ($retryAfter) {
-            $this->headers['Retry-After'] = $retryAfter;
+            $headers['Retry-After'] = (string) $retryAfter;
         }
 
-        // override the protected var presents in the extended abstract classe.
-        $this->statusCode = self::STATUS_CODE;
-        $this->detail = $detail;
-        $this->title = $title;
-        $this->type = $type;
-        $this->instance = $instance;
-
-        parent::__construct($this->detail);
+        parent::__construct(503, $message, $previous, $headers, $code);
     }
 }

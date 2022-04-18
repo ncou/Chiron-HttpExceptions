@@ -8,31 +8,15 @@ use Chiron\Http\Exception\HttpException;
 
 class MethodNotAllowedHttpException extends HttpException
 {
-    private const STATUS_CODE = 405;
-    private const TITLE = 'Method Not Allowed';
-    private const DETAIL = 'A request was made of a resource using a request method not supported by that resource.';
-    private const TYPE_URI = 'https://httpstatuses.com/405';
-
     /**
-     * @param array  $allow
-     * @param string $detail
-     * @param string $title
-     * @param string $type
-     * @param string $instance
+     * @param string[] $allow An array of allowed methods
+     *
+     * @see https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.5
      */
-    public function __construct(array $allow = [], string $detail = self::DETAIL, string $title = self::TITLE, string $type = self::TYPE_URI, string $instance = '')
+    public function __construct(array $allow, string $message = '', ?\Throwable $previous = null, int $code = 0, array $headers = [])
     {
-        if (! empty($allow)) {
-            $this->headers['Allow'] = strtoupper(implode(', ', $allow));
-        }
+        $headers['Allow'] = strtoupper(implode(', ', $allow));
 
-        // override the protected var presents in the extended abstract classe.
-        $this->statusCode = self::STATUS_CODE;
-        $this->detail = $detail;
-        $this->title = $title;
-        $this->type = $type;
-        $this->instance = $instance;
-
-        parent::__construct($this->detail);
+        parent::__construct(405, $message, $previous, $headers, $code);
     }
 }

@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Chiron\Tests\Http\Exception\Client;
 
 use Chiron\Http\Exception\Client\PreconditionFailedHttpException;
-use Chiron\Tests\Http\Exception\HttpExceptionTestCase;
+use Chiron\Http\Exception\HttpException;
+use Chiron\Tests\Http\Exception\AbstractTestCase;
 
-class PreconditionFailedHttpExceptionTest extends HttpExceptionTestCase
+class PreconditionFailedHttpExceptionTest extends AbstractTestCase
 {
-    protected function createException()
+    protected function createException(string $message = '', ?\Throwable $previous = null, int $code = 0, array $headers = []): HttpException
     {
-        return new PreconditionFailedHttpException();
+        return new PreconditionFailedHttpException($message, $previous, $code, $headers);
     }
 }
